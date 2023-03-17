@@ -1,2 +1,3 @@
 release-file:
-	tar -czf target/release/openai-cli.mac.tar.gz target/release/openai-cli
+	cargo build --release
+	tar -C target/release -czf openai-cli.mac.tar.gz openai-cli

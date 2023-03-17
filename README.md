@@ -1,4 +1,4 @@
-# OpenAI CLI
+d# OpenAI CLI
 
 A tool to easily run openai api with CLI. made with Rust.
 
@@ -6,7 +6,7 @@ A tool to easily run openai api with CLI. made with Rust.
 
 ```sh
 brew tap gumybit/openai-cli
-brew install openai-cli
+brew install gumybit/openai-cli/openai-cli
 openci-cli -h
 ```
 
