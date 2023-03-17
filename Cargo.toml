@@ -1,5 +1,5 @@
 [package]
-name = "chat-gpt"
+name = "openai-cli"
 version = "0.1.0"
 edition = "2021"
 
