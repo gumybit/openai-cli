@@ -7,7 +7,7 @@ A tool to easily run openai api with CLI. made with Rust.
 ```sh
 brew tap gumybit/openai-cli
 brew install openai-cli
-openci-ali -h
+openci-cli -h
 ```
 
 ## Usage
