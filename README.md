@@ -12,7 +12,7 @@ openci-cli -h
 
 ## Usage
 
-- set your API token to `OPEN_AI_API_TOKEN`
+- set your API token to environment variables with name: `OPENAI_API_TOKEN`
 
 ```
 $ openai-cli -h

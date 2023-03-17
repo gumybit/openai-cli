@@ -6,7 +6,7 @@ pub struct Config {
 }
 
 pub fn load_config() -> Config {
-    let token_env = "OPEN_AI_API_TOKEN";
+    let token_env = "OPENAI_API_TOKEN";
 
     let token = env::var(token_env)
         .expect(format!("The {:?} environment is not set.", token_env).as_str())
