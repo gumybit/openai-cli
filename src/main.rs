@@ -28,7 +28,7 @@ enum Commands {
         #[arg(long, short)]
         suffix: Option<String>,
 
-        #[arg(long, default_value = "16")]
+        #[arg(long, default_value = "1000")]
         max_tokens: Option<u16>,
 
         /// 0 to 2. What sampling temperature to use.

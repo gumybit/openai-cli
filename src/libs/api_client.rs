@@ -108,7 +108,7 @@ pub async fn post_completion(args: PostComletionArgs) -> Result<Response, reqwes
         "temperature": args.temperature,
         "top_p": args.top_p,
         "n": args.n,
-        "max_tokens": match args.max_tokens { None => 16, _ => args.max_tokens.unwrap() }
+        "max_tokens": match args.max_tokens { None => 1000, _ => args.max_tokens.unwrap() }
     });
 
     self::get_client()

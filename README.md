@@ -80,7 +80,7 @@ Arguments:
 Options:
   -m, --model <MODEL>              [default: gpt-3.5-turbo]
   -s, --suffix <SUFFIX>            The suffix that comes after a completion of inserted text
-      --max-tokens <MAX_TOKENS>    [default: 16]
+      --max-tokens <MAX_TOKENS>    [default: 1000]
       --temperature <TEMPERATURE>  0 to 2. What sampling temperature to use
       --top-p <TOP_P>              0 to 1. the model considers the results of the tokens with top_p probability mass
       --n <N>                      How many completions to generate for each prompt
