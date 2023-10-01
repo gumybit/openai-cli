@@ -21,7 +21,7 @@ enum Commands {
         #[arg(help = "prompt passing to ChatGPT")]
         prompt: String,
 
-        #[arg(long, short, default_value = "text-davinci-003")]
+        #[arg(long, short, default_value = "gpt-3.5-turbo")]
         model: Option<String>,
 
         /// The suffix that comes after a completion of inserted text.

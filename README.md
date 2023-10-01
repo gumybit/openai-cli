@@ -78,7 +78,7 @@ Arguments:
   <PROMPT>  prompt passing to ChatGPT
 
 Options:
-  -m, --model <MODEL>              [default: text-davinci-003]
+  -m, --model <MODEL>              [default: gpt-3.5-turbo]
   -s, --suffix <SUFFIX>            The suffix that comes after a completion of inserted text
       --max-tokens <MAX_TOKENS>    [default: 16]
       --temperature <TEMPERATURE>  0 to 2. What sampling temperature to use
