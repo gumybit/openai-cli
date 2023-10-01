@@ -7,14 +7,14 @@ const VERSION: &str = "v1";
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ResponseChat {
-    choices: Vec<ResponseChatChoice>,
+    pub choices: Vec<ResponseChatChoice>,
     id: String,
     usage: ResponseUsage,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ResponseCompletion {
-    choices: Vec<ResponseComletionChoice>,
+    pub choices: Vec<ResponseComletionChoice>,
     id: String,
     usage: ResponseUsage,
 }
@@ -28,13 +28,13 @@ struct ResponseUsage {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ResponseChatChoice {
-    message: ResponseChatMessage,
+    pub message: ResponseChatMessage,
     finish_reason: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ResponseComletionChoice {
-    text: String,
+    pub text: String,
     index: u8,
     finish_reason: String,
 }
@@ -42,7 +42,7 @@ pub struct ResponseComletionChoice {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ResponseChatMessage {
     role: String,
-    content: String,
+    pub content: String,
 }
 
 fn get_client() -> Client {
@@ -110,8 +110,6 @@ pub async fn post_completion(args: PostComletionArgs) -> Result<Response, reqwes
         "n": args.n,
         "max_tokens": match args.max_tokens { None => 16, _ => args.max_tokens.unwrap() }
     });
-
-    println!("{:?}", post_body);
 
     self::get_client()
         .post(format!("{}{}{}", self::HOST, self::VERSION, "/completions"))

@@ -1,7 +1,6 @@
 use clap::{command, Parser, Subcommand};
 mod libs;
 use libs::api_client::{post_chat, post_completion};
-use serde_json::json;
 
 use crate::libs::api_client::{PostChatArgs, PostComletionArgs, ResponseChat, ResponseCompletion};
 
@@ -105,7 +104,9 @@ async fn main() {
             .await
             .expect("Request error");
             let json: ResponseChat = result.json().await.expect("json error");
-            println!("{}", json!(json));
+            json.choices.iter().for_each(|message| {
+                println!("{}", trim_leading_newlines(&message.message.content));
+            });
         }
         Commands::Completion {
             prompt,
@@ -130,7 +131,17 @@ async fn main() {
             .await
             .expect("Request error");
             let json: ResponseCompletion = result.json().await.expect("json error");
-            println!("{}", json!(json));
+            json.choices.iter().for_each(|message| {
+                println!("{}", trim_leading_newlines(&message.text));
+            });
         }
+    }
+
+    fn trim_leading_newlines(s: &String) -> String {
+        let mut s = s.clone();
+        while s.starts_with('\n') {
+            s.remove(0);
+        }
+        s
     }
 }
