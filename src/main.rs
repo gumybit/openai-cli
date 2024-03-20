@@ -1,7 +1,6 @@
 use clap::{command, Parser, Subcommand};
 mod libs;
 use libs::api_client::{post_chat, post_completion};
-use serde_json::json;
 
 use crate::libs::api_client::{PostChatArgs, PostComletionArgs, ResponseChat, ResponseCompletion};
 
@@ -22,14 +21,14 @@ enum Commands {
         #[arg(help = "prompt passing to ChatGPT")]
         prompt: String,
 
-        #[arg(long, short, default_value = "text-davinci-003")]
+        #[arg(long, short, default_value = "gpt-3.5-turbo")]
         model: Option<String>,
 
         /// The suffix that comes after a completion of inserted text.
         #[arg(long, short)]
         suffix: Option<String>,
 
-        #[arg(long, default_value = "16")]
+        #[arg(long, default_value = "1000")]
         max_tokens: Option<u16>,
 
         /// 0 to 2. What sampling temperature to use.
@@ -105,7 +104,9 @@ async fn main() {
             .await
             .expect("Request error");
             let json: ResponseChat = result.json().await.expect("json error");
-            println!("{}", json!(json));
+            json.choices.iter().for_each(|message| {
+                println!("{}", trim_leading_newlines(&message.message.content));
+            });
         }
         Commands::Completion {
             prompt,
@@ -130,7 +131,17 @@ async fn main() {
             .await
             .expect("Request error");
             let json: ResponseCompletion = result.json().await.expect("json error");
-            println!("{}", json!(json));
+            json.choices.iter().for_each(|message| {
+                println!("{}", trim_leading_newlines(&message.text));
+            });
         }
+    }
+
+    fn trim_leading_newlines(s: &String) -> String {
+        let mut s = s.clone();
+        while s.starts_with('\n') {
+            s.remove(0);
+        }
+        s
     }
 }
